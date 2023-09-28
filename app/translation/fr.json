@@ -1,0 +1,22 @@
+{
+  "login": "Login",
+  "register": "S'enregitrer",
+  "email": "Email",
+  "mdp": "Mot de Passe",
+  "mdpo": "Mot de Passe Oublié",
+  "sign-in": "Confirmer",
+  "or": "Ou",
+  "everification": "Verification de votre Email",
+  "everificationdesc": "ouvrez votre e-mail, obtenez le code et appuyez sur confirmer pour continuer",
+  "validate": "Valider",
+  "home": "Accueil",
+  "from": "Du",
+  "to": "Au",
+  "pickvalue": "Choisissez une valeur",
+  "before": "Avant",
+  "during": "Pendant",
+  "after": "Après",
+  "share": "Partager",
+  "profile": "Profile",
+  "edit": "Editer"
+}
