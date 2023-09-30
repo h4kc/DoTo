@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import RootNavigation from './app/navigation/RootNavigation';
+import { t } from "./app/translation";
+import * as Localization from "expo-localization";
+import Translation from "./app/translation/context";
+
+import { useFonts, Inter_900Black, Inter_500Medium , Inter_700Bold} from '@expo-google-fonts/inter';
+
+const isRtl =  Localization.getLocales()[0].textDirection === "rtl"
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  let [fontsLoaded, fontError] = useFonts({
+    Inter_900Black,
+    Inter_500Medium,
+    Inter_700Bold
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+  return <Translation.Provider  value={{isRtl, t}}><RootNavigation/></Translation.Provider>;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

@@ -1,5 +1,5 @@
 //import libraries
-import i18n from "i18n-js";
+import { I18n }  from "i18n-js";
 import * as Localization from "expo-localization";
 
 
@@ -7,16 +7,16 @@ import en from "./en.json";
 import ar from "./ar.json";
 import fr from "./fr.json";
 //binding
-i18n.translations = {
+const i18n = new I18n({
   en,
   ar,
   fr,
-};
-i18n.locale = Localization.locale;
-// When a value is missing from a language it'll fallback to another language with the key present.
-i18n.fallbacks = true;
+});
 
-export function t(name) {
-  return i18n.t(name);
+i18n.defaultLocale=Localization.locale
+i18n.enableFallback
+ export function t(name) {
+return i18n.t(name);
 }
-export const isRtl = Localization.getLocales();
+
+
