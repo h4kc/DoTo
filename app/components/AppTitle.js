@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     text:{
         color:"black",
         borderColor:"black",
-        fontFamily: "Inter_700Bold",
+        fontFamily: "Inter_900Black",
         fontSize:30
     }
 })
