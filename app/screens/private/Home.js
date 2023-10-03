@@ -5,7 +5,7 @@ import AppTitle from '../../components/AppTitle'
 import TopicCard from '../../components/TopicCard'
 import AddButton from '../../components/AddButton'
 
-const Home = () => {
+const Home = ({navigation}) => {
   const data = [
     {
       name:"Work",
@@ -21,7 +21,7 @@ const Home = () => {
     },
   ]
   return (
-    <>
+
     <Screen style={{flex:1}}>
       <View style={styles.titleContainer}>
       <AppTitle text={"My Todo lists"}/>
@@ -29,17 +29,17 @@ const Home = () => {
       <View style={styles.listContainer}>
       <FlatList
         data={data}
-        renderItem={({item}) => <TopicCard title={item.name}  tasksCount={item.tasksCount}/>}
+        renderItem={({item}) => <TopicCard title={item.name}  tasksCount={item.tasksCount} onPress={()=>navigation.navigate("Todos")}/>}
         keyExtractor={item => item.name}
         style={{flex:1}}
       />
       </View>
-    
-    </Screen>
-    <View style={styles.addButtonContainer}>
+     <View style={styles.addButtonContainer}>
       <AddButton />
     </View>
-    </>
+    </Screen>
+   
+   
   )
 }
 
@@ -56,8 +56,10 @@ const styles = StyleSheet.create({
     
   },
   addButtonContainer:{
-    position:"absolute",
-    bottom:60,
-    right:10
+      
+    alignItems:"flex-end",
+
+    paddingRight:10,
+    paddingBottom:10
   }
 })
