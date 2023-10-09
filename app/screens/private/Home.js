@@ -35,7 +35,7 @@ const Home = ({navigation}) => {
       />
       </View>
      <View style={styles.addButtonContainer}>
-      <AddButton />
+      <AddButton onPress={()=>navigation.navigate("AddTopic")}/>
     </View>
     </Screen>
    
