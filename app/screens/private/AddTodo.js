@@ -5,21 +5,21 @@ import SecondaryButton from '../../components/SecondaryButton'
 import { useForm } from 'react-hook-form'
 import FormTextInput from '../../components/FormTextInput'
 
-const AddTopic = () => {
+const AddTodo = () => {
   const {control, handleSubmit} = useForm()
   const onSubmit = (data) => console.log(data)
   return (
-    <View style={styles.addTopicContainer}>
-      <FormTextInput placeholder={"Topic Title"} name={"topic"} control={control} defaultValue={''}/>
+    <View style={styles.AddTodoContainer}>
+      <FormTextInput placeholder={"Todo Title"} name={"todo"} control={control} defaultValue={''}/>
       <SecondaryButton color={"green"} text={"Save"} onPress={handleSubmit(onSubmit)}/>
     </View>
   )
 }
 
-export default AddTopic
+export default AddTodo
 
 const styles = StyleSheet.create({
-    addTopicContainer:{
+    AddTodoContainer:{
         paddingHorizontal:10,
         marginTop:0,
         height:120,
