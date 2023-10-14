@@ -4,7 +4,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
 
-
 function AppTextInput({
   icon,
   width = "100%",
@@ -25,12 +24,7 @@ function AppTextInput({
       )}
       <TextInput
         placeholder={placeholder}
-        
-        style={
-          isRtl
-            ? ( styles.inputRTL)
-            : ( styles.input)
-        }
+        style={isRtl ? styles.inputRTL : styles.input}
         {...otherProps}
       />
       {indicator && (
@@ -52,7 +46,6 @@ const styles = StyleSheet.create({
     width: "90%",
     padding: 10,
     marginVertical: 10,
-
   },
   containerRTL: {
     backgroundColor: colors.white,

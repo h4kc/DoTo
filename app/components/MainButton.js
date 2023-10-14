@@ -1,9 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 import colors from "../theme/colors";
 
-function MainButton({ title, onPress, icon="google",color = "white", colorIcon="black" }) {
+function MainButton({
+  title,
+  onPress,
+  icon = "google",
+  color = "white",
+  colorIcon = "black",
+}) {
   return (
     <TouchableOpacity
       style={[styles.button, { backgroundColor: colors[color] }]}
@@ -21,16 +27,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
-    width:"80%",
+    width: "80%",
     marginVertical: 10,
     borderColor: colors.black,
     borderWidth: 2,
-    flexDirection:"row"
+    flexDirection: "row",
   },
   text: {
     color: colors.black,
     fontSize: 18,
-    marginLeft:15,
+    marginLeft: 15,
     fontWeight: "bold",
   },
 });

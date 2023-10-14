@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../../screens/private/Home";
@@ -22,14 +21,12 @@ const PrivateNavigator = () => {
           title: "New Topic",
           headerStyle: {
             backgroundColor: colors.white,
-            
           },
           headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
             fontFamily: "Inter_900Black",
             fontSize: 22,
-            
           },
         }}
         name="AddTopic"
@@ -42,54 +39,48 @@ const PrivateNavigator = () => {
           title: "New Todo",
           headerStyle: {
             backgroundColor: colors.white,
-            
           },
           headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
             fontFamily: "Inter_900Black",
             fontSize: 22,
-            
           },
         }}
         name="AddTodo"
         component={AddTodo}
       />
-       <Stack.Screen
+      <Stack.Screen
         options={{
           headerShown: true,
           headerShadowVisible: false,
           title: "Edit Todo",
           headerStyle: {
             backgroundColor: colors.white,
-            
           },
           headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
             fontFamily: "Inter_900Black",
             fontSize: 22,
-            
           },
         }}
         name="EditTodo"
         component={EditTodo}
       />
-           <Stack.Screen
+      <Stack.Screen
         options={{
           headerShown: true,
           headerShadowVisible: false,
           title: "Edit Topic",
           headerStyle: {
             backgroundColor: colors.white,
-            
           },
           headerTintColor: "black",
           headerTitleStyle: {
             fontWeight: "bold",
             fontFamily: "Inter_900Black",
             fontSize: 22,
-            
           },
         }}
         name="EditTopic"
