@@ -7,9 +7,9 @@ import PrivateNavigator from './private/PrivateNavigator';
 const RootNavigation = () => {
   return (
     <NavigationContainer>
-        {/* <AuthNavigator/> */}
+        <AuthNavigator/>
 
-        <PrivateNavigator/>
+        {/* <PrivateNavigator/> */}
     </NavigationContainer>
   )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import colors from '../theme/colors';
 import { FontAwesome5 } from '@expo/vector-icons';
-const CheckBoxItem = ({onDelete, title,isChecked}) => {
+const CheckBoxItem = ({onDelete, title,isChecked, onEdit}) => {
   return (
     <View style={{flexDirection:"row",alignItems:"center", paddingHorizontal:10, paddingVertical:5, marginTop:10}}>
             <BouncyCheckbox
@@ -18,10 +18,14 @@ const CheckBoxItem = ({onDelete, title,isChecked}) => {
                 onPress={(isChecked) => {}}
                 isChecked={isChecked}
             />
+              <TouchableOpacity onPress={onEdit} style={{marginRight:6}}>
+            <FontAwesome5 name="edit" size={20} color="black"  />
+            </TouchableOpacity>
             <TouchableOpacity onPress={onDelete}>
             <FontAwesome5 name="trash" size={20} color="black" />
             </TouchableOpacity>
-            
+
+           
     </View>
   )
 }

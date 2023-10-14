@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
 import Screen from "../../theme/Screen";
 import AppIcon from "../../components/AppIcon";
@@ -6,6 +6,7 @@ import AppTitle from "../../components/AppTitle";
 import SecondaryButton from "../../components/SecondaryButton";
 import CheckBoxItem from "../../components/CheckBoxItem";
 import AddButton from "../../components/AddButton";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const Todos = ({ navigation }) => {
   const data = [
@@ -36,11 +37,14 @@ const Todos = ({ navigation }) => {
       </View>
       <View style={styles.topicAndButtonContainer}>
         <AppTitle text={"Work"} />
-        <SecondaryButton
-          text={"Delete Groupe"}
-          color={"danger"}
-          onPress={() => console.log("delete Groupe")}
-        />
+        <View style={styles.editDeleteButtonContainer}>
+        <TouchableOpacity style={{marginRight:6}} onPress={()=>navigation.navigate("EditTopic")}>
+            <FontAwesome5 name="edit" size={20} color="black"  />
+            </TouchableOpacity>
+            <TouchableOpacity >
+            <FontAwesome5 name="trash" size={20} color="black" />
+            </TouchableOpacity>
+          </View>
       </View>
       <View style={styles.todosContainer}>
         <FlatList
@@ -49,6 +53,7 @@ const Todos = ({ navigation }) => {
             <CheckBoxItem
               title={item.todo}
               onDelete={() => console.log("Delete Todo")}
+              onEdit={() => navigation.navigate("EditTodo")}
               isChecked={item.status}
             />
           )}
@@ -82,10 +87,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   addButtonContainer:{
-    
     alignItems:"flex-end",
-
     paddingRight:10,
     paddingBottom:10
+  },
+  editDeleteButtonContainer:{
+   flexDirection:"row"
   }
 });
