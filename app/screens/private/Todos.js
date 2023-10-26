@@ -1,12 +1,11 @@
-import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
 import Screen from "../../theme/Screen";
 import AppIcon from "../../components/AppIcon";
 import AppTitle from "../../components/AppTitle";
-import SecondaryButton from "../../components/SecondaryButton";
 import CheckBoxItem from "../../components/CheckBoxItem";
 import AddButton from "../../components/AddButton";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const Todos = ({ navigation }) => {
   const data = [
@@ -38,13 +37,16 @@ const Todos = ({ navigation }) => {
       <View style={styles.topicAndButtonContainer}>
         <AppTitle text={"Work"} />
         <View style={styles.editDeleteButtonContainer}>
-        <TouchableOpacity style={{marginRight:6}} onPress={()=>navigation.navigate("EditTopic")}>
-            <FontAwesome5 name="edit" size={20} color="black"  />
-            </TouchableOpacity>
-            <TouchableOpacity >
+          <TouchableOpacity
+            style={{ marginRight: 6 }}
+            onPress={() => navigation.navigate("EditTopic")}
+          >
+            <FontAwesome5 name="edit" size={20} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity>
             <FontAwesome5 name="trash" size={20} color="black" />
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.todosContainer}>
         <FlatList
@@ -62,8 +64,8 @@ const Todos = ({ navigation }) => {
         />
       </View>
       <View style={styles.addButtonContainer}>
-      <AddButton onPress={()=>navigation.navigate("AddTodo")}/>
-    </View>
+        <AddButton onPress={() => navigation.navigate("AddTodo")} />
+      </View>
     </Screen>
   );
 };
@@ -86,12 +88,12 @@ const styles = StyleSheet.create({
   todosContainer: {
     flex: 1,
   },
-  addButtonContainer:{
-    alignItems:"flex-end",
-    paddingRight:10,
-    paddingBottom:10
+  addButtonContainer: {
+    alignItems: "flex-end",
+    paddingRight: 10,
+    paddingBottom: 10,
   },
-  editDeleteButtonContainer:{
-   flexDirection:"row"
-  }
+  editDeleteButtonContainer: {
+    flexDirection: "row",
+  },
 });

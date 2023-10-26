@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
-
+import fonts from "../theme/fonts";
 
 function AppTextInput({
   icon,
@@ -25,12 +25,7 @@ function AppTextInput({
       )}
       <TextInput
         placeholder={placeholder}
-        
-        style={
-          isRtl
-            ? ( styles.inputRTL)
-            : ( styles.input)
-        }
+        style={isRtl ? styles.inputRTL : styles.input}
         {...otherProps}
       />
       {indicator && (
@@ -52,7 +47,6 @@ const styles = StyleSheet.create({
     width: "90%",
     padding: 10,
     marginVertical: 10,
-
   },
   containerRTL: {
     backgroundColor: colors.white,
@@ -67,14 +61,14 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 25,
-    fontFamily: "Inter_500Medium",
+    fontFamily: fonts.medium,
   },
   inputRTL: {
     marginRight: 10,
     flex: 1,
     fontSize: 25,
     textAlign: "right",
-    fontFamily: "Inter_500Medium",
+    fontFamily: fonts.medium,
   },
 });
 
