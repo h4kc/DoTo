@@ -1,13 +1,14 @@
-import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 import colors from "../theme/colors";
+import { Text, TouchableOpacity } from "react-native";
 
-const SecondaryButton = ({ color, text, onPress }) => {
+const SecondaryButton = ({ bgcolor,txtcolor, text, onPress }) => {
   return (
     <TouchableOpacity
       style={{
         borderWidth: 1,
-        borderColor: colors[color],
+        borderColor: colors[bgcolor],
+        backgroundColor:colors[bgcolor],
         width: 120,
         padding: 5,
         borderRadius: 10,
@@ -16,7 +17,7 @@ const SecondaryButton = ({ color, text, onPress }) => {
       }}
       onPress={onPress}
     >
-      <Text style={{ color: colors[color] }}>{text}</Text>
+      <Text style={{ color: colors[txtcolor] }}>{text}</Text>
     </TouchableOpacity>
   );
 };

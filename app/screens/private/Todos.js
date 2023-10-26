@@ -1,10 +1,10 @@
-import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
 import Screen from "../../theme/Screen";
 import AppIcon from "../../components/AppIcon";
 import AppTitle from "../../components/AppTitle";
 import CheckBoxItem from "../../components/CheckBoxItem";
 import AddButton from "../../components/AddButton";
+import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const Todos = ({ navigation }) => {

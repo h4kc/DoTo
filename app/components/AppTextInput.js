@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../theme/colors";
+import fonts from "../theme/fonts";
 
 function AppTextInput({
   icon,
@@ -60,14 +61,14 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 25,
-    fontFamily: "Inter_500Medium",
+    fontFamily: fonts.medium,
   },
   inputRTL: {
     marginRight: 10,
     flex: 1,
     fontSize: 25,
     textAlign: "right",
-    fontFamily: "Inter_500Medium",
+    fontFamily: fonts.medium,
   },
 });
 

@@ -1,8 +1,8 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import AppTitle from "./AppTitle";
 import AppText from "./AppText";
 import colors from "../theme/colors";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const TopicCard = ({ title, tasksCount, onPress }) => {
   return (

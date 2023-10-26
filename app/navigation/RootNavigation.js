@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './public/AuthNavigator';
 import PrivateNavigator from './private/PrivateNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const RootNavigation = () => {

@@ -1,7 +1,8 @@
 import React from "react";
+import colors from "../theme/colors";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import colors from "../theme/colors";
+
 
 function MainButton({
   title,

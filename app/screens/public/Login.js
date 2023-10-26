@@ -1,10 +1,9 @@
-import { StyleSheet, Image, View } from "react-native";
 import React, { useContext } from "react";
 import Translation from "../../translation/context";
 import Screen from "../../theme/Screen";
 import AppTitle from "../../components/AppTitle";
 import MainButton from "../../components/MainButton";
-
+import { StyleSheet, Image, View } from "react-native";
 const Login = () => {
   const { isRtl, t } = useContext(Translation);
 

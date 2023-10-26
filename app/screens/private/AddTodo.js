@@ -1,9 +1,9 @@
-import { StyleSheet, View } from "react-native";
 import React from "react";
 import colors from "../../theme/colors";
+import FormTextInput from "../../components/FormTextInput";
 import SecondaryButton from "../../components/SecondaryButton";
 import { useForm } from "react-hook-form";
-import FormTextInput from "../../components/FormTextInput";
+import { StyleSheet, View } from "react-native";
 
 const AddTodo = () => {
   const { control, handleSubmit } = useForm();
@@ -17,7 +17,8 @@ const AddTodo = () => {
         defaultValue={""}
       />
       <SecondaryButton
-        color={"green"}
+        bgcolor={"black"}
+        txtcolor={"white"}
         text={"Save"}
         onPress={handleSubmit(onSubmit)}
       />

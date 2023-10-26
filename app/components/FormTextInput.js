@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
 import React from "react";
 import AppTextInput from "./AppTextInput";
 import { useController } from "react-hook-form";
+import { StyleSheet } from "react-native";
 
 const FormTextInput = ({ placeholder, control, defaultValue, name }) => {
   const { field } = useController({

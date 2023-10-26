@@ -1,9 +1,9 @@
-import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
 import Screen from "../../theme/Screen";
 import AppTitle from "../../components/AppTitle";
 import TopicCard from "../../components/TopicCard";
 import AddButton from "../../components/AddButton";
+import { FlatList, StyleSheet, View } from "react-native";
 
 const Home = ({ navigation }) => {
   const data = [

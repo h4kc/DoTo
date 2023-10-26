@@ -1,7 +1,8 @@
-import { TouchableOpacity } from "react-native";
 import React from "react";
-import { FontAwesome5 } from "@expo/vector-icons";
 import colors from "../theme/colors";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
+
 const AppIcon = ({ onPress, name, color, size = 50 }) => {
   return (
     <TouchableOpacity

@@ -1,7 +1,8 @@
-import { StyleSheet, TouchableOpacity} from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import colors from "../theme/colors";
+import { StyleSheet, TouchableOpacity} from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+
 
 const AddButton = ({ onPress, icon="plus", size=50 , iconColor="white",backColor="black"}) => {
   return (

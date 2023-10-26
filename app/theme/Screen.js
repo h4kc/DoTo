@@ -1,7 +1,8 @@
 import React from "react";
+import colors from "./colors";
 import { STATUS_BAR_HEIGHT } from "./constants";
 import { StyleSheet, SafeAreaView, View } from "react-native";
-import colors from "./colors";
+
 
 function Screen({ children, style }) {
   return (
