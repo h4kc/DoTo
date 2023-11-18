@@ -8,6 +8,7 @@ import AddTodo from "../../screens/private/AddTodo";
 import EditTodo from "../../screens/private/EditTodo";
 import EditTopic from "../../screens/private/EditTopic";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import fonts from "../../theme/fonts";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,8 +26,7 @@ const PrivateNavigator = () => {
           },
           headerTintColor: "black",
           headerTitleStyle: {
-            fontWeight: "bold",
-            fontFamily: "Inter_900Black",
+            fontFamily: fonts.bolder,
             fontSize: 22,
           },
         }}
@@ -43,8 +43,7 @@ const PrivateNavigator = () => {
           },
           headerTintColor: "black",
           headerTitleStyle: {
-            fontWeight: "bold",
-            fontFamily: "Inter_900Black",
+            fontFamily: fonts.bolder,
             fontSize: 22,
           },
         }}
@@ -61,8 +60,7 @@ const PrivateNavigator = () => {
           },
           headerTintColor: "black",
           headerTitleStyle: {
-            fontWeight: "bold",
-            fontFamily: "Inter_900Black",
+            fontFamily: fonts.bolder,
             fontSize: 22,
           },
         }}
@@ -79,8 +77,7 @@ const PrivateNavigator = () => {
           },
           headerTintColor: "black",
           headerTitleStyle: {
-            fontWeight: "bold",
-            fontFamily: "Inter_900Black",
+            fontFamily: fonts.bolder,
             fontSize: 22,
           },
         }}
