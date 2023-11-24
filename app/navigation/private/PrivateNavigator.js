@@ -18,68 +18,28 @@ const PrivateNavigator = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen
         options={{
-          headerShown: true,
-          headerShadowVisible: false,
-          title: "New Topic",
-          headerStyle: {
-            backgroundColor: colors.white,
-          },
-          headerTintColor: "black",
-          headerTitleStyle: {
-            fontFamily: fonts.bolder,
-            fontSize: 22,
-          },
+          headerShown: false,
         }}
         name="AddTopic"
         component={AddTopic}
       />
       <Stack.Screen
         options={{
-          headerShown: true,
-          headerShadowVisible: false,
-          title: "New Todo",
-          headerStyle: {
-            backgroundColor: colors.white,
-          },
-          headerTintColor: "black",
-          headerTitleStyle: {
-            fontFamily: fonts.bolder,
-            fontSize: 22,
-          },
+          headerShown: false,
         }}
         name="AddTodo"
         component={AddTodo}
       />
       <Stack.Screen
         options={{
-          headerShown: true,
-          headerShadowVisible: false,
-          title: "Edit Todo",
-          headerStyle: {
-            backgroundColor: colors.white,
-          },
-          headerTintColor: "black",
-          headerTitleStyle: {
-            fontFamily: fonts.bolder,
-            fontSize: 22,
-          },
+          headerShown: false,
         }}
         name="EditTodo"
         component={EditTodo}
       />
       <Stack.Screen
         options={{
-          headerShown: true,
-          headerShadowVisible: false,
-          title: "Edit Topic",
-          headerStyle: {
-            backgroundColor: colors.white,
-          },
-          headerTintColor: "black",
-          headerTitleStyle: {
-            fontFamily: fonts.bolder,
-            fontSize: 22,
-          },
+          headerShown: false,
         }}
         name="EditTopic"
         component={EditTopic}

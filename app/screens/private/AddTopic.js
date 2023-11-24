@@ -4,13 +4,15 @@ import FormTextInput from "../../components/FormTextInput";
 import SecondaryButton from "../../components/SecondaryButton";
 import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
+import Header from "../../components/Header";
 
 
-const AddTopic = () => {
+const AddTopic = ({navigation}) => {
   const { control, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
   return (
     <View style={styles.addTopicContainer}>
+      <Header title={"New Topic"} onPreview={()=>navigation.navigate("Home")}/>
       <FormTextInput
         placeholder={"Topic Title"}
         name={"topic"}
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   addTopicContainer: {
     paddingHorizontal: 10,
     marginTop: 0,
-    height: 120,
+    height: 260,
     backgroundColor: colors.white,
   },
 });
