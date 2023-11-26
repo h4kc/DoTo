@@ -4,7 +4,7 @@ import Screen from "../../theme/Screen";
 import AppTitle from "../../components/AppTitle";
 import MainButton from "../../components/MainButton";
 import { StyleSheet, Image, View } from "react-native";
-const Login = () => {
+const Login = ({onGooglePress}) => {
   const { isRtl, t } = useContext(Translation);
 
   return (
@@ -17,7 +17,7 @@ const Login = () => {
         <AppTitle text={"DoTo"} />
       </View>
       <View style={styles.mainButtonContainer}>
-        <MainButton title={"Continue with Google"} icon="google" />
+        <MainButton title={"Continue with Google"} icon="google" onPress={()=>onGooglePress()}/>
         <MainButton title={"Continue with Apple"} icon="apple" />
       </View>
     </Screen>
