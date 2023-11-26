@@ -15,18 +15,19 @@ webBrowser.maybeCompleteAuthSession();
 
 const RootNavigation = () => {
 const [user, setUser] = useState()
-const [rquest, response, promptAsync] = Google.useAuthRequest({
+const [request, response, promptAsync] = Google.useAuthRequest({
   iosClientId:"522208820944-nasuhd74crs4848gkejkrlnbnm8t6790.apps.googleusercontent.com",
   androidClientId:"522208820944-q9ti0av3r814u7ula371ak74clds6vkb.apps.googleusercontent.com"
 })
 useEffect(() => {
  if(response?.type==="success"){
   const {id_token} = response.params
+  console.log(id_token)
   const credential = GoogleAuthProvider.credential(id_token)
   signInWithCredential(auth,credential)
  }
 }, [response])
-
+console.log(response)
   return (
     <Login onGooglePress={promptAsync}/>
     // <NavigationContainer>
