@@ -16,7 +16,7 @@ webBrowser.maybeCompleteAuthSession();
 
 const RootNavigation = () => {
 const [user, setUser] = useState()
-const [loading, setLoading] = useState(false)
+const [loading, setLoading] = useState(true)
 const [request, response, promptAsync] = Google.useAuthRequest({
   iosClientId:"522208820944-nasuhd74crs4848gkejkrlnbnm8t6790.apps.googleusercontent.com",
   androidClientId:"522208820944-q9ti0av3r814u7ula371ak74clds6vkb.apps.googleusercontent.com"
