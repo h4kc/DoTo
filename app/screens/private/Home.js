@@ -3,7 +3,10 @@ import Screen from "../../theme/Screen";
 import AppTitle from "../../components/AppTitle";
 import TopicCard from "../../components/TopicCard";
 import AddButton from "../../components/AddButton";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import AppIcon from "../../components/AppIcon";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firbase";
 
 const Home = ({ navigation }) => {
   const data = [
@@ -24,6 +27,9 @@ const Home = ({ navigation }) => {
     <Screen style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
         <AppTitle text={"My Todo lists"} />
+        <TouchableOpacity onPress={ async ()=>  signOut(auth)}>
+        <AppIcon name={"sign-out-alt"} size={40}/>
+        </TouchableOpacity>
       </View>
       <View style={styles.listContainer}>
         <FlatList
@@ -52,6 +58,8 @@ const styles = StyleSheet.create({
   titleContainer: {
     marginHorizontal: 20,
     marginVertical: 10,
+    flexDirection:"row",
+    justifyContent:"space-between"
   },
   listContainer: {
     marginVertical: 10,
