@@ -3,12 +3,10 @@ import Home from "../../screens/private/Home";
 import Account from "../../screens/private/Account";
 import Todos from "../../screens/private/Todos";
 import AddTopic from "../../screens/private/AddTopic";
-import colors from "../../theme/colors";
 import AddTodo from "../../screens/private/AddTodo";
 import EditTodo from "../../screens/private/EditTodo";
 import EditTopic from "../../screens/private/EditTopic";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import fonts from "../../theme/fonts";
 
 const Stack = createNativeStackNavigator();
 

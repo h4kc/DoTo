@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import Translation from "../../translation/context";
 import Screen from "../../theme/Screen";
 import AppTitle from "../../components/AppTitle";
 import MainButton from "../../components/MainButton";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View,ActivityIndicator } from "react-native";
+import colors from "../../theme/colors";
 const Login = ({onGooglePress}) => {
-  const { isRtl, t } = useContext(Translation);
-
-  return (
+const [loading, setLoading] = useState(false)  
+const onGooglePressButton = ()=>{
+  setLoading(true)
+  onGooglePress()
+}  
+return (
     <Screen>
       <View style={styles.logoTitleContainer}>
         <Image
@@ -17,9 +21,12 @@ const Login = ({onGooglePress}) => {
         <AppTitle text={"DoTo"} />
       </View>
       <View style={styles.mainButtonContainer}>
-        <MainButton title={"Continue with Google"} icon="google" onPress={()=>onGooglePress()}/>
+        <MainButton title={"Continue with Google"} icon="google" onPress={onGooglePressButton}/>
         <MainButton title={"Continue with Apple"} icon="apple" />
       </View>
+      {loading && <View>
+      <ActivityIndicator size="large" color={colors.black}/>
+      </View>}
     </Screen>
   );
 };

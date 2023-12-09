@@ -3,7 +3,6 @@ import colors from "../theme/colors";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-
 function MainButton({
   title,
   onPress,
