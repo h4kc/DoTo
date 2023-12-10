@@ -21,10 +21,8 @@ const RootNavigation = ({ onLayoutRootView }) => {
 
   // const [loading, setLoading] = useState(true)
   const [request, response, promptAsync] = Google.useAuthRequest({
-    iosClientId:
-      "522208820944-nasuhd74crs4848gkejkrlnbnm8t6790.apps.googleusercontent.com",
-    androidClientId:
-      "522208820944-q9ti0av3r814u7ula371ak74clds6vkb.apps.googleusercontent.com",
+    iosClientId: process.env.EXPO_PUBLIC_FIREBASE_ios,
+    androidClientId: process.env.EXPO_PUBLIC_FIREBASE_android
   });
   // const checkLocalUser = async () => {
   //   try {

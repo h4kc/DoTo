@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Screen from "../../theme/Screen";
 import AppTitle from "../../components/AppTitle";
 import TopicCard from "../../components/TopicCard";
@@ -10,8 +10,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { signOut } from "firebase/auth";
 import { FlatList, StyleSheet, View } from "react-native";
 import { auth } from "../../../firbase";
+import { getUserData } from "../../api/privateApi";
 const Home = ({ navigation }) => {
   const authContext = useContext(AuthContext);
+  const [userData, setUserData] = useState()
+  const getUserDataHome =async ()=>{
+    const cats =   await getUserData(authContext.user.uid)
+    console.log(cats)
+    if (cats) {
+       setUserData(cats)
+    }
+   
+  }
   const onSignOut = async () => {
     console.log("User starting sign out");
     await AsyncStorage.removeItem("@doto-user");
@@ -32,6 +42,10 @@ const Home = ({ navigation }) => {
       tasksCount: 15,
     },
   ];
+useEffect(() => {
+  getUserDataHome()
+}, [])
+console.log(userData)
   return (
     <Screen style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
@@ -40,18 +54,19 @@ const Home = ({ navigation }) => {
         <AppIcon name={"sign-out-alt"} size={40} onPress={onSignOut} />
       </View>
       <View style={styles.listContainer}>
-        <FlatList
-          data={data}
+        {userData ? <FlatList
+          data={userData.categories}
           renderItem={({ item }) => (
             <TopicCard
-              title={item.name}
-              tasksCount={item.tasksCount}
+              key={item.categorieLabel}
+              title={item.categorieLabel}
+              tasksCount={item.categorieTodos.length}
               onPress={() => navigation.navigate("Todos")}
             />
           )}
           keyExtractor={(item) => item.name}
           style={{ flex: 1 }}
-        />
+        /> : <AppTitle text={"Loading"}/>}
       </View>
       <View style={styles.addButtonContainer}>
         <AddButton onPress={() => navigation.navigate("AddTopic")} />
