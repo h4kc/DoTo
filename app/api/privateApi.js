@@ -1,4 +1,4 @@
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs ,updateDoc, doc,arrayUnion} from "firebase/firestore";
 import {db} from "../../firbase"
 export const getUserData = async (userId) =>{
     const citiesRef = collection(db, "todos");
@@ -6,8 +6,14 @@ export const getUserData = async (userId) =>{
     const querySnapshot = await getDocs(q);
     const data = []
     querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
         data.push(doc.data());
       });
       return data[0]
+    
+}
+export const addTopic= async (document,data)=>{
+  const userDoc = doc(db, "todos", document);
+  await updateDoc(userDoc, {
+    categories: arrayUnion(data)
+});
 }

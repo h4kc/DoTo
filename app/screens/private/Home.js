@@ -15,10 +15,13 @@ const Home = ({ navigation }) => {
   const authContext = useContext(AuthContext);
   const [userData, setUserData] = useState()
   const getUserDataHome =async ()=>{
+    console.log("Fetching topics start")
     const cats =   await getUserData(authContext.user.uid)
-    console.log(cats)
     if (cats) {
        setUserData(cats)
+       console.log("Todos topics featched")
+    }else{
+      console.log("No todo topics")
     }
    
   }
@@ -45,12 +48,10 @@ const Home = ({ navigation }) => {
 useEffect(() => {
   getUserDataHome()
 }, [])
-console.log(userData)
   return (
     <Screen style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
         <AppTitle text={"My Todo lists"} />
-
         <AppIcon name={"sign-out-alt"} size={40} onPress={onSignOut} />
       </View>
       <View style={styles.listContainer}>
@@ -58,13 +59,12 @@ console.log(userData)
           data={userData.categories}
           renderItem={({ item }) => (
             <TopicCard
-              key={item.categorieLabel}
               title={item.categorieLabel}
               tasksCount={item.categorieTodos.length}
               onPress={() => navigation.navigate("Todos")}
             />
           )}
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.categorieLabel}
           style={{ flex: 1 }}
         /> : <AppTitle text={"Loading"}/>}
       </View>
