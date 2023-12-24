@@ -6,25 +6,36 @@ import AddButton from "../../components/AddButton";
 
 import AppIcon from "../../components/AppIcon";
 import AuthContext from "../../auth/context";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { signOut } from "firebase/auth";
-import { FlatList, StyleSheet, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 import { auth } from "../../../firbase";
-import { getUserData } from "../../api/privateApi";
+import { useIsFocused } from "@react-navigation/native";
+
+import { getUserData, getUserDataNew } from "../../api/privateApi";
+import colors from "../../theme/colors";
 const Home = ({ navigation }) => {
   const authContext = useContext(AuthContext);
-  const [userData, setUserData] = useState()
-  const getUserDataHome =async ()=>{
-    console.log("Fetching topics start")
-    const cats =   await getUserData(authContext.user.uid)
-    if (cats) {
-       setUserData(cats)
-       console.log("Todos topics featched")
-    }else{
-      console.log("No todo topics")
+  const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState()
+  const getUserDataHome = async () => {
+    console.log("Fetching topics start");
+    setLoading(true)
+    try {
+        const cats = await getUserDataNew(authContext.user.uid);
+        if (cats) {
+      setUserData(cats);
+      console.log("Todos topics featched");
+    } else {
+      console.log("No todo topics");
     }
-   
-  }
+    } catch (error) {
+      setError(error)
+    }
+    setLoading(false)
+  };
   const onSignOut = async () => {
     console.log("User starting sign out");
     await AsyncStorage.removeItem("@doto-user");
@@ -45,9 +56,14 @@ const Home = ({ navigation }) => {
       tasksCount: 15,
     },
   ];
-useEffect(() => {
-  getUserDataHome()
-}, [])
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      getUserDataHome();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <Screen style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
@@ -55,18 +71,23 @@ useEffect(() => {
         <AppIcon name={"sign-out-alt"} size={40} onPress={onSignOut} />
       </View>
       <View style={styles.listContainer}>
-        {userData ? <FlatList
-          data={userData.categories}
-          renderItem={({ item }) => (
-            <TopicCard
-              title={item.categorieLabel}
-              tasksCount={item.categorieTodos.length}
-              onPress={() => navigation.navigate("Todos")}
-            />
-          )}
-          keyExtractor={(item) => item.categorieLabel}
-          style={{ flex: 1 }}
-        /> : <AppTitle text={"Loading"}/>}
+        {!loading ? userData.length ? (
+          <FlatList
+            data={userData}
+            renderItem={({ item }) => (
+              <TopicCard
+                title={item.label}
+                tasksCount={item.completedTodos + "/" + item.totalTodos}
+                onPress={() => navigation.navigate("Todos")}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        ) : <AppTitle text={error}/> : (
+          <View>
+      <ActivityIndicator size="large" color={colors.black}/>
+      </View>
+        )}
       </View>
       <View style={styles.addButtonContainer}>
         <AddButton onPress={() => navigation.navigate("AddTopic")} />
@@ -86,12 +107,13 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     marginVertical: 10,
+
     flex: 1,
+    flexGrow: 1,
   },
   addButtonContainer: {
-    alignItems: "flex-end",
-
-    paddingRight: 10,
-    paddingBottom: 10,
+    position: "absolute",
+    bottom: 10,
+    right: 10,
   },
 });

@@ -5,7 +5,7 @@ import SecondaryButton from "../../components/SecondaryButton";
 import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
 import Header from "../../components/Header";
-import { addTopic } from "../../api/privateApi";
+import { addTopic, addTopicNew,addTodo } from "../../api/privateApi";
 import AuthContext from "../../auth/context";
 
 
@@ -13,7 +13,10 @@ const AddTopic = ({navigation}) => {
   const authContext = useContext(AuthContext);
 
   const { control, handleSubmit } = useForm();
-  const onSubmit = async (data) =>await addTopic(authContext.user.uid,{idTopic:data.topic+"_"+Date.now().toString(),categoryLabel:data.topic, categoryTodos:[]});
+  const onSubmit = async (data) =>{
+    await addTopicNew(authContext.user.uid,{topicLabel:data.topic,completedTodos:0,totalTodos:0 },data.topic+"_"+Date.now().toString())
+    navigation.navigate("Home")
+  };
   return (
     <View style={styles.addTopicContainer}>
       <Header title={"New Topic"} onPreview={()=>navigation.navigate("Home")}/>
