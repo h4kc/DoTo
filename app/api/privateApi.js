@@ -39,3 +39,18 @@ export const addTodo= async (userId,data,topicId,todoId)=>{
   const userDoc = doc(db, "doto-users-data", userId,"topics","travel_1703351000162","todos",todoId);
   await setDoc(userDoc,data);
 }
+export const getTodos = async (userId, topicId) =>{
+  const topicTodos = collection(db, "doto-users-data", userId,"topics",topicId,"todos");
+  const fetchedData = await getDocs(topicTodos)
+  const data = []
+   fetchedData.forEach((doc) => {
+    data.push({id:doc.id,
+              label:doc.data().todoLabel,
+              completedAt: doc.data().tcompletedAt,
+              createdAt: doc.data().createdAt
+            });
+  
+  }); 
+  console.log(data)
+  return data
+}

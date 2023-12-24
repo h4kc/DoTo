@@ -11,30 +11,32 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { signOut } from "firebase/auth";
 import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 import { auth } from "../../../firbase";
-import { useIsFocused } from "@react-navigation/native";
 
-import { getUserData, getUserDataNew } from "../../api/privateApi";
+import { getUserDataNew } from "../../api/privateApi";
 import colors from "../../theme/colors";
 const Home = ({ navigation }) => {
+  //if the add function is not triggred in add screen don't fetch
   const authContext = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState()
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
   const getUserDataHome = async () => {
+    console.log("NoRefresh");
+
     console.log("Fetching topics start");
-    setLoading(true)
+    setLoading(true);
     try {
-        const cats = await getUserDataNew(authContext.user.uid);
-        if (cats) {
-      setUserData(cats);
-      console.log("Todos topics featched");
-    } else {
-      console.log("No todo topics");
-    }
+      const cats = await getUserDataNew(authContext.user.uid);
+      if (cats) {
+        setUserData(cats);
+        console.log("Todos topics featched");
+      } else {
+        console.log("No todo topics");
+      }
     } catch (error) {
-      setError(error)
+      setError(error);
     }
-    setLoading(false)
+    setLoading(false);
   };
   const onSignOut = async () => {
     console.log("User starting sign out");
@@ -71,22 +73,27 @@ const Home = ({ navigation }) => {
         <AppIcon name={"sign-out-alt"} size={40} onPress={onSignOut} />
       </View>
       <View style={styles.listContainer}>
-        {!loading ? userData.length ? (
-          <FlatList
-            data={userData}
-            renderItem={({ item }) => (
-              <TopicCard
-                title={item.label}
-                tasksCount={item.completedTodos + "/" + item.totalTodos}
-                onPress={() => navigation.navigate("Todos")}
-              />
-            )}
-            keyExtractor={(item) => item.id}
-          />
-        ) : <AppTitle text={error}/> : (
+        {!loading ? (
+          userData.length ? (
+            <FlatList
+              data={userData}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <TopicCard
+                  title={item.label}
+                  tasksCount={item.completedTodos + "/" + item.totalTodos}
+                  onPress={() => navigation.navigate("Todos",item)}
+                />
+              )}
+              keyExtractor={(item) => item.id}
+            />
+          ) : (
+            <AppTitle text={error} />
+          )
+        ) : (
           <View>
-      <ActivityIndicator size="large" color={colors.black}/>
-      </View>
+            <ActivityIndicator size="large" color={colors.black} />
+          </View>
         )}
       </View>
       <View style={styles.addButtonContainer}>

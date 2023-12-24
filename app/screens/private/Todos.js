@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useEffect,useContext,useState } from "react";
 import Screen from "../../theme/Screen";
 import AppIcon from "../../components/AppIcon";
 import AppTitle from "../../components/AppTitle";
 import CheckBoxItem from "../../components/CheckBoxItem";
 import AddButton from "../../components/AddButton";
-import { StyleSheet, View, FlatList, TouchableOpacity } from "react-native";
+import { StyleSheet, View, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { getTodos } from "../../api/privateApi";
+import AuthContext from "../../auth/context";
+import colors from "../../theme/colors";
+import AppText from "../../components/AppText";
 
-const Todos = ({ navigation }) => {
-  const data = [
-    {
-      todo: "Call my boss",
-      status: true,
-      deleted: false,
-    },
-    {
-      todo: "Print The Report",
-      status: true,
-      deleted: false,
-    },
-    {
-      todo: "Prepare a presentation ",
-      status: false,
-      deleted: false,
-    },
-  ];
+const Todos = ({ route,navigation }) => {
+  const authContext = useContext(AuthContext);
+  const {label, id} = route.params
+  const [todos, setTodos] = useState([])
+  const [loading, setLoading] = useState(false)
+  const getTopicTodos = async ()=>{
+    setLoading(true)
+   console.log("Start Fetching Todos")
+    const fetchedTodos = await getTodos(authContext.user.uid,id)
+    if (fetchedTodos) {
+      setTodos(fetchedTodos)
+      console.log("Fetched Todos")
+    }
+    setLoading(false)
+  }
+  useEffect(() => {
+    getTopicTodos()
+  }, [])
+  
+  
   return (
     <Screen style={{ flex: 1 }}>
       <View style={styles.backIconContainer}>
@@ -35,7 +41,7 @@ const Todos = ({ navigation }) => {
         />
       </View>
       <View style={styles.topicAndButtonContainer}>
-        <AppTitle text={"Work"} />
+        <AppTitle text={label} />
         <View style={styles.editDeleteButtonContainer}>
           <TouchableOpacity
             style={{ marginRight: 6 }}
@@ -49,19 +55,19 @@ const Todos = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.todosContainer}>
-        <FlatList
-          data={data}
+      {!loading ? todos.length ?  <FlatList
+          data={todos}
           renderItem={({ item }) => (
             <CheckBoxItem
-              title={item.todo}
+              title={item.label}
               onDelete={() => console.log("Delete Todo")}
               onEdit={() => navigation.navigate("EditTodo")}
-              isChecked={item.status}
+              isChecked={item.completedAt}
             />
           )}
-          keyExtractor={(item) => item.todo}
+          keyExtractor={(item) => item.id}
           style={{ flex: 1 }}
-        />
+        /> :<AppText style={{paddingHorizontal:10}} text={"No Todos in this topic"}/> : <ActivityIndicator size="large" color={colors.black}/>}
       </View>
       <View style={styles.addButtonContainer}>
         <AddButton onPress={() => navigation.navigate("AddTodo")} />
@@ -84,6 +90,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems:"center",
+
   },
   todosContainer: {
     flex: 1,

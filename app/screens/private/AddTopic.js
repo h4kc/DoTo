@@ -1,4 +1,4 @@
-import React,  { useContext } from "react";
+import React,  { useContext, useState } from "react";
 import colors from "../../theme/colors";
 import FormTextInput from "../../components/FormTextInput";
 import SecondaryButton from "../../components/SecondaryButton";
@@ -9,12 +9,15 @@ import { addTopic, addTopicNew,addTodo } from "../../api/privateApi";
 import AuthContext from "../../auth/context";
 
 
+
 const AddTopic = ({navigation}) => {
   const authContext = useContext(AuthContext);
-
+  const [loading, setLoading] = useState(false)
   const { control, handleSubmit } = useForm();
   const onSubmit = async (data) =>{
+    setLoading(true)
     await addTopicNew(authContext.user.uid,{topicLabel:data.topic,completedTodos:0,totalTodos:0 },data.topic+"_"+Date.now().toString())
+    setLoading(false)
     navigation.navigate("Home")
   };
   return (
