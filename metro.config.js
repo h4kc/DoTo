@@ -5,4 +5,7 @@ module.exports = {
   resolver: {
     sourceExts
   },
+  transformer: {
+    assetPlugins: ['expo-asset/tools/hashAssetFiles'],
+  },
 }

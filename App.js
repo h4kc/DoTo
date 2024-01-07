@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { useCallback, useEffect, useState } from 'react';
 import RootNavigation from "./app/navigation/RootNavigation";
 import { t } from "./app/translation";
